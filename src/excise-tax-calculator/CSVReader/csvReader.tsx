@@ -1,7 +1,8 @@
 import { HTMLAttributes, useState } from 'react';
 import { useCSVReader } from 'react-papaparse';
+import { Table } from '../Table/table';
 
-interface ParseResults {
+interface ParsedResults {
   data: RowData[];
 }
 
@@ -9,7 +10,7 @@ interface RowData {
   [key: number]: string | undefined;
 }
 
-interface ParserProps2 {
+interface ParserProps {
   getRootProps: () => HTMLAttributes<HTMLElement>;
   acceptedFile: File;
   getRemoveFileProps: () => HTMLAttributes<HTMLElement>;
@@ -17,17 +18,18 @@ interface ParserProps2 {
 
 export const CSVReader = () => {
   const { CSVReader } = useCSVReader();
-  const [rowData, setRowData] = useState<RowData[]>([]);
-  const [headers, setHeaders] = useState<string[]>([]);
+  const [data, setData] = useState<RowData[]>([]);
   const platoRegex = /\d\d,\d° | \d\d,\d\d° | \d,\d°/;
-  const volumeRegex = /\s(0,5 l|0,75 l|0,44 l|0,33 l|0,375 l|30 l|20 l|10 l)/g;
+  const volumeRegex =
+    /\s(0,5 l|0,75 l|0,44 l|0,33 l|0,375 l| 0,750 l |30 l|20 l|10 l)/g;
   const packageTypeRegex = /but\.|but|can|keg|keykeg/;
 
   return (
     <CSVReader
-      onUploadAccepted={(results: ParseResults) => {
+      onUploadAccepted={(results: ParsedResults) => {
         const parsedData = results.data
           .map((row) => {
+            const orderNumber = row[0];
             const plato = row[2]?.match(platoRegex)?.[0] || '';
             const volume = row[2]?.match(volumeRegex)?.[0] || '';
             const packageType = row[2]?.match(packageTypeRegex)?.[0] || '';
@@ -36,26 +38,19 @@ export const CSVReader = () => {
                 ?.replace(platoRegex, '')
                 ?.replace(volumeRegex, '')
                 ?.replace(packageTypeRegex, '') || '';
+            const quantities = row[3];
 
             return {
-              0: row[0],
-              1: name,
-              2: plato,
-              3: volume,
-              4: packageType,
-              5: row[3],
+              orderNumber: orderNumber,
+              beerName: name,
+              plato: plato,
+              volume: volume,
+              packageType: packageType,
+              quantities: quantities,
             };
           })
           .slice(10, -3);
-        setRowData(parsedData);
-        setHeaders([
-          'Lp.',
-          'Nazwa',
-          'Plato',
-          'Objętość',
-          'Opakowanie',
-          'Ilości',
-        ]);
+        setData(parsedData);
       }}
       config={{
         header: false,
@@ -63,7 +58,7 @@ export const CSVReader = () => {
         skipEmptyLines: true,
       }}
     >
-      {({ getRootProps, acceptedFile, getRemoveFileProps }: ParserProps2) => (
+      {({ getRootProps, acceptedFile, getRemoveFileProps }: ParserProps) => (
         <>
           <div className='flex flex-row mb-[10px] items-center'>
             <button
@@ -83,24 +78,7 @@ export const CSVReader = () => {
               Remove
             </button>
           </div>
-          <table>
-            <thead>
-              <tr>
-                {headers.map((header) => (
-                  <th key={header}>{header}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {rowData.map((row, index) => (
-                <tr key={index}>
-                  {headers.map((header, index) => (
-                    <td key={header}>{row[index]}</td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <Table data={data} />
         </>
       )}
     </CSVReader>
