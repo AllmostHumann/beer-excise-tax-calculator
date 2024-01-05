@@ -6,5 +6,6 @@
   "jsxSingleQuote": true,
   "singleAttributePerLine": true,
   "endOfLine": "lf",
-  "semi": true
+  "semi": true,
+  "plugins": ["prettier-plugin-tailwindcss"]
 }
