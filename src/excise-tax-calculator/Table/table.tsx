@@ -71,7 +71,7 @@ export const Table = ({ data }: TableProps) => {
   });
 
   return (
-    <div className='p-2'>
+    <div className='w-fit p-2'>
       <table className='border-collapse'>
         <thead className='border-[1px] border-solid border-black'>
           {table.getHeaderGroups().map((headerGroup) => (
