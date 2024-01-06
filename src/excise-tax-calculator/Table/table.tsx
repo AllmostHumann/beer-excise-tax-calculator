@@ -35,7 +35,7 @@ const defaultColumns = [
     footer: () => <span>No.</span>,
   }),
   columnHelper.accessor('beerName', {
-    size: 400,
+    size: 500,
     header: () => <span>Beer name</span>,
     cell: (info) => info.getValue(),
     footer: () => <span>Beer name</span>,
@@ -78,11 +78,13 @@ export const Table = ({ data }: TableProps) => {
   });
 
   return (
-    <div className='overflow-x-auto py-2 pl-16'>
+    <div className='overflow-x-auto px-14 py-2'>
       <table
         {...{
-          className: 'border-collapse',
-          style: { width: table.getCenterTotalSize() },
+          className: `border-collapse`,
+          style: {
+            width: table.getCenterTotalSize(),
+          },
         }}
       >
         <thead className='border-[1px] border-solid border-black'>
@@ -132,7 +134,7 @@ export const Table = ({ data }: TableProps) => {
             </tr>
           ))}
         </tbody>
-        <tfoot className='border-[1px] border-solid border-black'>
+        <tfoot className='border-[1px] border-solid border-black '>
           {table.getFooterGroups().map((footerGroup) => (
             <tr key={footerGroup.id}>
               {footerGroup.headers.map((header) => (
