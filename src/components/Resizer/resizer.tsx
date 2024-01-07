@@ -1,10 +1,4 @@
-import { Header, Table } from '@tanstack/react-table';
-import { Beer, RowData } from '../../excise-tax-calculator/Table/table';
-
-interface ResizerProps {
-  header: Header<RowData | Beer, unknown>;
-  table: Table<RowData | Beer>;
-}
+import { ResizerProps } from '../api/types/resizerTypes';
 
 export const Resizer = ({ header, table }: ResizerProps) => {
   return (
