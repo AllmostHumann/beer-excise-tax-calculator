@@ -7,13 +7,12 @@ import {
 
 export const CSVReader = () => {
   const { CSVReader } = useCSVReader();
-  const { setData, removeData, setAcceptedFileName } = useCalculatorStore();
+  const { setData, removeData, setAcceptedFileName, acceptedFileName } =
+    useCalculatorStore();
   const platoRegex = /\d\d,\d° | \d\d,\d\d° | \d,\d°/;
   const volumeRegex =
     /\s(0,5 l|0,75 l|0,44 l|0,33 l|0,375 l| 0,750 l |30 l|20 l|10 l)/g;
   const packageTypeRegex = /but\.|but|can|keg|keykeg/;
-
-  console.log();
 
   return (
     <CSVReader
@@ -61,7 +60,7 @@ export const CSVReader = () => {
               Browse file
             </button>
             <div className='mx-0 my-[5px] h-[65px] w-[60%] bg-white px-[25px] pt-[3px] font-medium leading-10 text-black outline-none md:h-[44px]'>
-              {acceptedFile && acceptedFile.name}
+              {acceptedFile ? acceptedFile.name : acceptedFileName}
             </div>
             <button
               {...getRemoveFileProps()}
