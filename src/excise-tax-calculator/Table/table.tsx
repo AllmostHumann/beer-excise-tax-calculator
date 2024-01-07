@@ -1,41 +1,27 @@
+import { Resizer } from '../../components/Resizer/resizer';
 import {
   createColumnHelper,
   flexRender,
   getCoreRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import { Resizer } from '../../components/Resizer/resizer';
 import { useState } from 'react';
-
-interface TableProps {
-  data: RowData[];
-}
-
-export interface RowData {
-  [key: number]: string | undefined;
-}
-
-export interface Beer {
-  orderNumber: number;
-  beerName: string;
-  plato: string;
-  volume: string;
-  packageType: string;
-  quantities: number;
-}
+import useCalculatorStore from '../../utils/calculatorStore';
+import { RowData } from '../../components/api/types/csvReaderTypes';
+import { Beer } from '../../components/api/types/dataTypes';
 
 const columnHelper = createColumnHelper<RowData | Beer>();
 
 const defaultColumns = [
   columnHelper.accessor('orderNumber', {
     id: 'orderNumber',
-    size: 40,
+    size: 50,
     header: () => <span>No.</span>,
     cell: (info) => info.getValue(),
     footer: () => <span>No.</span>,
   }),
   columnHelper.accessor('beerName', {
-    size: 500,
+    size: 514,
     header: () => <span>Beer name</span>,
     cell: (info) => info.getValue(),
     footer: () => <span>Beer name</span>,
@@ -66,8 +52,9 @@ const defaultColumns = [
   }),
 ];
 
-export const Table = ({ data }: TableProps) => {
+export const Table = () => {
   const [columns] = useState<typeof defaultColumns>(() => [...defaultColumns]);
+  const { data, acceptedFileName } = useCalculatorStore();
 
   const table = useReactTable({
     data,
@@ -78,10 +65,10 @@ export const Table = ({ data }: TableProps) => {
   });
 
   return (
-    <div className='overflow-x-auto px-14 py-2'>
+    <div className='overflow-x-auto px-6 py-2'>
       <table
         {...{
-          className: `border-collapse`,
+          className: `border-collapse ${acceptedFileName ? 'table' : 'hidden'}`,
           style: {
             width: table.getCenterTotalSize(),
           },
