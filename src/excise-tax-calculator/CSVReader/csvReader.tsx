@@ -1,9 +1,6 @@
 import { useCSVReader } from 'react-papaparse';
 import useCalculatorStore from '../../utils/calculatorStore';
-import {
-  ParsedResults,
-  ParserProps,
-} from '../../components/api/types/csvReaderTypes';
+import { ParsedResults, ParserProps } from '../../api/types/csvReaderTypes';
 
 export const CSVReader = () => {
   const { CSVReader } = useCSVReader();

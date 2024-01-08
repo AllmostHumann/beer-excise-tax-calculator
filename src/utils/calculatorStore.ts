@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { devtools, persist, createJSONStorage } from 'zustand/middleware';
-import { RowData } from '../components/api/types/csvReaderTypes';
+import { RowData } from '../api/types/csvReaderTypes';
 
 interface CalculatorState {
   data: RowData[];

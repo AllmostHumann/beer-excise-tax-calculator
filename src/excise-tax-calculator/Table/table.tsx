@@ -7,8 +7,8 @@ import {
 } from '@tanstack/react-table';
 import { useState } from 'react';
 import useCalculatorStore from '../../utils/calculatorStore';
-import { RowData } from '../../components/api/types/csvReaderTypes';
-import { Beer } from '../../components/api/types/dataTypes';
+import { RowData } from '../../api/types/csvReaderTypes';
+import { Beer } from '../../api/types/dataTypes';
 
 const columnHelper = createColumnHelper<RowData | Beer>();
 

@@ -1,4 +1,4 @@
-import { ResizerProps } from '../api/types/resizerTypes';
+import { ResizerProps } from '../../api/types/resizerTypes';
 
 export const Resizer = ({ header, table }: ResizerProps) => {
   return (
