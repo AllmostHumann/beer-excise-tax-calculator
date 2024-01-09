@@ -9,6 +9,7 @@ import { useState } from 'react';
 import useCalculatorStore from '../../utils/calculatorStore';
 import { RowData } from '../../api/types/csvReaderTypes';
 import { Beer } from '../../api/types/dataTypes';
+import { TableCell } from '../../components/TableCell/tableCell';
 
 const columnHelper = createColumnHelper<RowData | Beer>();
 
@@ -17,49 +18,64 @@ const defaultColumns = [
     id: 'orderNumber',
     size: 50,
     header: () => <span>No.</span>,
-    cell: (info) => info.getValue(),
+    cell: TableCell,
     footer: () => <span>No.</span>,
   }),
   columnHelper.accessor('beerName', {
     size: 514,
     header: () => <span>Beer name</span>,
-    cell: (info) => info.getValue(),
+    cell: TableCell,
     footer: () => <span>Beer name</span>,
   }),
   columnHelper.accessor('plato', {
     size: 150,
     header: () => <span>Extract [Plato°]</span>,
-    cell: (info) => info.getValue(),
+    cell: TableCell,
     footer: () => <span>Extract [Plato°]</span>,
   }),
   columnHelper.accessor('volume', {
     size: 80,
     header: () => <span>Volume</span>,
-    cell: (info) => info.getValue(),
+    cell: TableCell,
     footer: () => <span>Volume</span>,
   }),
   columnHelper.accessor('packageType', {
     size: 130,
     header: () => <span>Package type</span>,
-    cell: (info) => info.getValue(),
+    cell: TableCell,
     footer: () => <span>Package type</span>,
   }),
   columnHelper.accessor('quantities', {
     size: 100,
     header: () => <span>Quantities</span>,
-    cell: (info) => info.getValue(),
+    cell: TableCell,
     footer: () => <span>Quantities</span>,
   }),
 ];
 
 export const Table = () => {
+  const { data, setData, acceptedFileName } = useCalculatorStore();
   const [columns] = useState<typeof defaultColumns>(() => [...defaultColumns]);
-  const { data, acceptedFileName } = useCalculatorStore();
 
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    meta: {
+      updateData: (rowIndex: number, columnId: string, value: string) => {
+        setData((old) =>
+          old.map((row, index) => {
+            if (index === rowIndex) {
+              return {
+                ...old[rowIndex],
+                [columnId]: value,
+              };
+            }
+            return row;
+          }),
+        );
+      },
+    },
     columnResizeMode: 'onChange',
     columnResizeDirection: 'ltr',
   });
