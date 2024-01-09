@@ -8,7 +8,7 @@ interface CalculatorState {
 }
 
 interface CalculatorStore extends CalculatorState {
-  setData: (data: RowData[]) => void;
+  setData: (data: RowData[] | ((old: RowData[]) => RowData[])) => void;
   setAcceptedFileName: (acceptedFileName: string) => void;
   removeData: () => void;
 }
@@ -24,7 +24,10 @@ const useCalculatorStore = create<CalculatorStore>()(
       ...initialState,
       data: [],
       acceptedFileName: '',
-      setData: (data) => set({ data }),
+      setData: (data) =>
+        set((state) => ({
+          data: typeof data === 'function' ? data(state.data) : data,
+        })),
       setAcceptedFileName: (acceptedFileName) => set({ acceptedFileName }),
       removeData: () => {
         set(initialState);
