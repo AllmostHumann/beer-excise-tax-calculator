@@ -22,7 +22,7 @@ const defaultColumns = [
     footer: () => <span>No.</span>,
   }),
   columnHelper.accessor('beerName', {
-    size: 514,
+    size: 500,
     header: () => <span>Beer name</span>,
     cell: TableCell,
     footer: () => <span>Beer name</span>,
@@ -81,7 +81,7 @@ export const Table = () => {
   });
 
   return (
-    <div className='overflow-x-auto px-6 py-2'>
+    <div className='grid place-content-center overflow-x-auto  py-2'>
       <table
         {...{
           className: `border-collapse ${acceptedFileName ? 'table' : 'hidden'}`,
