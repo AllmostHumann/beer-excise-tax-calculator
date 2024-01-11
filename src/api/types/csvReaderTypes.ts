@@ -2,6 +2,12 @@ import { HTMLAttributes } from 'react';
 
 export interface RowData {
   [key: number]: string | undefined;
+  orderNumber?: string | undefined;
+  beerName?: string;
+  plato?: string;
+  volume?: string;
+  packageType?: string;
+  quantities?: string | undefined;
 }
 
 export interface ParsedResults {
