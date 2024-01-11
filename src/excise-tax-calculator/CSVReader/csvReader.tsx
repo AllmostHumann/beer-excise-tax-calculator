@@ -6,7 +6,7 @@ export const CSVReader = () => {
   const { CSVReader } = useCSVReader();
   const { setData, removeData, setAcceptedFileName, acceptedFileName } =
     useCalculatorStore();
-  const platoRegex = /\d\d,\d° | \d\d,\d\d° | \d,\d°/;
+  const platoRegex = /\d\d,\d°|\d\d,\d\d°|\d,\d°/;
   const volumeRegex =
     /\s(0,5 l|0,75 l|0,44 l|0,33 l|0,375 l| 0,750 l |30 l|20 l|10 l)/g;
   const packageTypeRegex = /but\.|but|can|keg|keykeg/;
@@ -21,7 +21,7 @@ export const CSVReader = () => {
             const plato = row[2]?.match(platoRegex)?.[0] || '';
             const volume = row[2]?.match(volumeRegex)?.[0] || '';
             const packageType = row[2]?.match(packageTypeRegex)?.[0] || '';
-            const name =
+            const beerName =
               row[2]
                 ?.replace(platoRegex, '')
                 ?.replace(volumeRegex, '')
@@ -29,12 +29,12 @@ export const CSVReader = () => {
             const quantities = row[3];
 
             return {
-              orderNumber: orderNumber,
-              beerName: name,
-              plato: plato,
-              volume: volume,
-              packageType: packageType,
-              quantities: quantities,
+              orderNumber,
+              beerName,
+              plato,
+              volume,
+              packageType,
+              quantities,
             };
           })
           .slice(10, -3);
