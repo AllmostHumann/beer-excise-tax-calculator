@@ -8,7 +8,7 @@ export const CSVReader = () => {
     useCalculatorStore();
   const platoRegex = /\d\d,\d°|\d\d,\d\d°|\d,\d°/;
   const volumeRegex =
-    /\s(0,5 l|0,75 l|0,44 l|0,33 l|0,375 l| 0,750 l |30 l|20 l|10 l)/g;
+    /(0,5 l|0,75 l|0,44 l|0,33 l|0,375 l|0,750 l|30 l|20 l|10 l)/g;
   const packageTypeRegex = /but\.|but|can|keg|keykeg/;
 
   return (
