@@ -1,4 +1,4 @@
-import { RowData } from '../api/types/csvReaderTypes';
+import { RowData } from '../src/api/types/csvReaderTypes';
 
 declare module '@tanstack/react-table' {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
