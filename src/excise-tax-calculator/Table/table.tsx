@@ -1,8 +1,10 @@
 import { Resizer } from '../../components/Resizer/resizer';
+import { DebounceInput } from 'react-debounce-input';
 import {
   createColumnHelper,
   flexRender,
   getCoreRowModel,
+  getFilteredRowModel,
   useReactTable,
 } from '@tanstack/react-table';
 import { useState } from 'react';
@@ -64,6 +66,7 @@ const defaultColumns = [
 export const Table = () => {
   const { data, setData, acceptedFileName } = useCalculatorStore();
   const [columns] = useState<typeof defaultColumns>(() => [...defaultColumns]);
+  const [filtering, setFiltering] = useState('');
 
   const table = useReactTable({
     data,
@@ -113,12 +116,27 @@ export const Table = () => {
         });
       },
     },
+    getFilteredRowModel: getFilteredRowModel(),
+    state: {
+      globalFilter: filtering,
+    },
+    onGlobalFilterChange: setFiltering,
     columnResizeMode: 'onChange',
     columnResizeDirection: 'ltr',
   });
 
   return (
     <div className='mx-5 my-2 overflow-x-auto'>
+      <div className='flex flex-row items-center'>
+        <p className='pr-1 font-semibold'>Search:</p>
+        <DebounceInput
+          className='my-2 rounded-md border-[1px] border-solid border-black bg-gray-200'
+          debounceTimeout={300}
+          type='text'
+          value={filtering}
+          onChange={(event) => setFiltering(event.target.value)}
+        />
+      </div>
       <table
         {...{
           className: `border-collapse ${acceptedFileName ? 'table' : 'hidden'}`,
