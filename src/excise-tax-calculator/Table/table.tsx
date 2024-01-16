@@ -127,7 +127,11 @@ export const Table = () => {
 
   return (
     <div className='mx-5 my-2 overflow-x-auto'>
-      <div className='flex flex-row items-center'>
+      <div
+        className={`flex flex-row items-center ${
+          acceptedFileName ? 'block' : 'hidden'
+        }`}
+      >
         <p className='pr-1 font-semibold'>Search:</p>
         <DebounceInput
           className='my-2 rounded-md border-[1px] border-solid border-black bg-gray-200'
@@ -169,7 +173,6 @@ export const Table = () => {
                         header.column.columnDef.header,
                         header.getContext(),
                       )}
-
                   {header.id === 'addRow' ? null : (
                     <Resizer
                       header={header}
