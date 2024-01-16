@@ -69,7 +69,7 @@ export const CalculatedResults = () => {
       <div className={`m-4 ${acceptedFileName ? 'block' : 'hidden'}`}>
         <label
           className='px-1 pt-1 font-bold'
-          htmlFor='dicount'
+          htmlFor='discount'
         >
           Discount for small producers (50%)
         </label>
