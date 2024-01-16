@@ -8,6 +8,7 @@ export interface RowData {
   volume?: string;
   packageType?: string;
   quantities?: string | undefined;
+  addRow?: string;
 }
 
 export interface ParsedResults {
