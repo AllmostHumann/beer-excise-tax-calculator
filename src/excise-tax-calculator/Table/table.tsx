@@ -81,7 +81,7 @@ export const Table = () => {
   });
 
   return (
-    <div className='grid place-content-center overflow-x-auto  py-2'>
+    <div className='mx-5 my-2 overflow-x-auto'>
       <table
         {...{
           className: `border-collapse ${acceptedFileName ? 'table' : 'hidden'}`,

@@ -88,13 +88,13 @@ export const CalculatedResults = () => {
               key={result.plato}
               className='flex flex-col border-[2px]  border-solid px-1'
             >
-              <div className='px-1'>
+              <div className='px-1 font-medium'>
                 Extract: <p className='font-bold'>{result.plato} Plato</p>
               </div>
-              <div className='px-1'>
+              <div className='px-1 font-medium'>
                 Volume: <p className='font-bold'>{result.sumQuantities} hl</p>
               </div>
-              <div className='px-1'>
+              <div className='px-1 font-medium'>
                 Tax: <p className='font-bold'>{result.taxToPay} zł</p>
               </div>
             </div>
