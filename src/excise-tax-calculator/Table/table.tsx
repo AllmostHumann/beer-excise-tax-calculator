@@ -10,46 +10,54 @@ import useCalculatorStore from '../../utils/calculatorStore';
 import { RowData } from '../../api/types/csvReaderTypes';
 import { Beer } from '../../api/types/dataTypes';
 import { TableCell } from '../../components/TableCell/tableCell';
+import { TableRow } from '../../components/TableRow/tableRow';
 
 const columnHelper = createColumnHelper<RowData | Beer>();
 
 const defaultColumns = [
   columnHelper.accessor('orderNumber', {
-    id: 'orderNumber',
     size: 50,
-    header: () => <span>No.</span>,
+    header: () => <span className='pl-1'>No.</span>,
     cell: TableCell,
-    footer: () => <span>No.</span>,
+    footer: () => <span className='pl-1'>No.</span>,
   }),
   columnHelper.accessor('beerName', {
-    size: 500,
-    header: () => <span>Beer name</span>,
+    size: 435,
+    header: () => <span className='pl-1'>Beer name</span>,
     cell: TableCell,
-    footer: () => <span>Beer name</span>,
+    footer: () => <span className='pl-1'>Beer name</span>,
   }),
   columnHelper.accessor('plato', {
     size: 150,
-    header: () => <span>Extract [Plato°]</span>,
+    header: () => <span className='pl-1'>Extract [Plato°]</span>,
     cell: TableCell,
-    footer: () => <span>Extract [Plato°]</span>,
+    footer: () => <span className='pl-1'>Extract [Plato°]</span>,
   }),
   columnHelper.accessor('volume', {
     size: 80,
-    header: () => <span>Volume</span>,
+    header: () => <span className='pl-1'>Volume</span>,
     cell: TableCell,
-    footer: () => <span>Volume</span>,
+    footer: () => <span className='pl-1'>Volume</span>,
   }),
   columnHelper.accessor('packageType', {
     size: 130,
-    header: () => <span>Package type</span>,
+    header: () => <span className='pl-1'>Package type</span>,
     cell: TableCell,
-    footer: () => <span>Package type</span>,
+    footer: () => <span className='pl-1'>Package type</span>,
   }),
   columnHelper.accessor('quantities', {
     size: 100,
-    header: () => <span>Quantities</span>,
+    header: () => <span className='pl-1'>Quantities</span>,
     cell: TableCell,
-    footer: () => <span>Quantities</span>,
+    footer: () => <span className='pl-1'>Quantities</span>,
+  }),
+  columnHelper.accessor('addRow', {
+    id: 'addRow',
+    size: 40,
+    header: '',
+    cell: TableRow,
+    footer: '',
+    enableResizing: false,
   }),
 ];
 
@@ -75,6 +83,35 @@ export const Table = () => {
           }),
         );
       },
+      addRow: (rowIndex: number) => {
+        const newRow: RowData = {
+          orderNumber: `${table.getRowModel().rows.length + 1}`,
+          beerName: '',
+          plato: '',
+          volume: '',
+          packageType: '',
+          quantities: '',
+        };
+        setData((old) => {
+          const row = [...old];
+          row.splice(rowIndex + 1, 0, newRow);
+          return row.map((row, index) => ({
+            ...row,
+            orderNumber: `${index + 1}`,
+          }));
+        });
+      },
+      removeRow: (rowIndex: number) => {
+        setData((old) => {
+          const udpateRow = old.filter(
+            (_row: RowData, index: number) => index !== rowIndex,
+          );
+          return udpateRow.map((row, index) => ({
+            ...row,
+            orderNumber: `${index + 1}`,
+          }));
+        });
+      },
     },
     columnResizeMode: 'onChange',
     columnResizeDirection: 'ltr',
@@ -90,14 +127,17 @@ export const Table = () => {
           },
         }}
       >
-        <thead className='border-[1px] border-solid border-black'>
+        <thead>
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
                 <th
                   {...{
-                    className:
-                      'relative border-[1px] border-solid border-black',
+                    className: `relative  ${
+                      header.id === 'addRow'
+                        ? 'border-none'
+                        : 'border-[1px] border-solid border-black'
+                    }`,
                     key: header.id,
                     colSpan: header.colSpan,
                     style: {
@@ -111,16 +151,19 @@ export const Table = () => {
                         header.column.columnDef.header,
                         header.getContext(),
                       )}
-                  <Resizer
-                    header={header}
-                    table={table}
-                  />
+
+                  {header.id === 'addRow' ? null : (
+                    <Resizer
+                      header={header}
+                      table={table}
+                    />
+                  )}
                 </th>
               ))}
             </tr>
           ))}
         </thead>
-        <tbody className='border-[1px] border-solid border-black'>
+        <tbody>
           {table.getRowModel().rows.map((row) => (
             <tr key={row.id}>
               {row.getVisibleCells().map((cell) => (
@@ -137,14 +180,17 @@ export const Table = () => {
             </tr>
           ))}
         </tbody>
-        <tfoot className='border-[1px] border-solid border-black '>
+        <tfoot>
           {table.getFooterGroups().map((footerGroup) => (
             <tr key={footerGroup.id}>
               {footerGroup.headers.map((header) => (
                 <th
                   {...{
-                    className:
-                      'relative border-[1px] border-solid border-black',
+                    className: `relative  ${
+                      header.id === 'addRow'
+                        ? 'border-none'
+                        : 'border-[1px] border-solid border-black'
+                    }`,
                     key: header.id,
                     colSpan: header.colSpan,
                     style: {
