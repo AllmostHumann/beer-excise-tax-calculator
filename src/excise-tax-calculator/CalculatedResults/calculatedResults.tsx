@@ -53,37 +53,23 @@ export const CalculatedResults = () => {
         taxToPay: taxToPay,
       };
     })
-    .sort((a, b) => parseFloat(a.plato || '') - parseFloat(b.plato || ''));
+    .sort((a, b) => {
+      const platoA = parseFloat((a.plato || '0').replace(',', '.'));
+      const platoB = parseFloat((b.plato || '0').replace(',', '.'));
+    
+      return platoA - platoB;
+    });;
 
   return (
     <div>
-      <div className='flex flex-row items-center justify-center font-bold'>
+      <div className='flex flex-row items-center justify-center font-bold mb-4'>
         <WarningIcon className='h-6' />
         <p>
           Tax for beer in 2024 - 10.40 zł per hectolitre for each degree Plato
           of the finished product.
         </p>
       </div>
-      <div className='grid grid-cols-[2fr_1fr] place-content-between gap-5 px-5'>
-        <div>
-          {resultsForPlato.map((result) => (
-            <div
-              key={result.plato}
-              className='grid grid-cols-[1fr_1fr_1fr] place-content-center gap-1'
-            >
-              <div className='pr-1 pt-1'>
-                Extract: <p className='font-bold'>{result.plato} Plato</p>
-              </div>
-              <div className='pr-1 pt-1'>
-                Volume: <p className='font-bold'>{result.sumQuantities} hl</p>
-              </div>
-              <div className='pr-1 pt-1'>
-                Tax: <p className='font-bold'>{result.taxToPay} zł</p>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className={`p-1 ${acceptedFileName ? 'block' : 'hidden'}`}>
+      <div className={`m-4 ${acceptedFileName ? 'block' : 'hidden'}`}>
           <label
             className='pr-1 pt-1'
             htmlFor='dicount'
@@ -96,6 +82,25 @@ export const CalculatedResults = () => {
             type='checkbox'
             name='discount'
           />
+        </div>
+      <div >
+        <div className='grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr] gap-1 px-5'>
+          {resultsForPlato.map((result) => (
+            <div
+              key={result.plato}
+              className='flex flex-col px-1  border-solid border-[2px]'
+            >
+              <div className='px-1'>
+                Extract: <p className='font-bold'>{result.plato} Plato</p>
+              </div>
+              <div className='px-1'>
+                Volume: <p className='font-bold'>{result.sumQuantities} hl</p>
+              </div>
+              <div className='px-1'>
+                Tax: <p className='font-bold'>{result.taxToPay} zł</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
