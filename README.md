@@ -18,11 +18,9 @@ All actions from parsing to tax calculation are saved in localstorage just in ca
 
 In the near future I plan to add an option to filter the table, delete/add rows, and improve the look of the whole application. 
 
-Thanks!
+Cheers!
 
 **Ps: This application was created to work on files generated in my work. You can assume with 99% certainty that it will not work on files from another brewery.**
-
-Cheers!
 
 ## Description
 
