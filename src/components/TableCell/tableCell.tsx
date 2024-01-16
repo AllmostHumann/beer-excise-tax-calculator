@@ -23,7 +23,7 @@ export const TableCell = ({
     <input
       id={cell.id}
       style={{ width: `${column.getSize()}px` }}
-      className='bg-transparent'
+      className='bg-transparent pl-1'
       value={value}
       onChange={(event) => setValue(event.target.value)}
       onBlur={onBlur}
