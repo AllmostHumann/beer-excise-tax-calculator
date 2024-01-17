@@ -82,10 +82,11 @@ export const CalculatedResults = () => {
           Discount for small producers (50%)
         </label>
         <input
+          id='discount'
           onClick={useDiscountForSmallProducers}
           className='translate-y-0.5'
           type='checkbox'
-          name='discount'
+          name='discountCheckBox'
           defaultChecked={discount === 2 ? true : false}
         />
       </div>
