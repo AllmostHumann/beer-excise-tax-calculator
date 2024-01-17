@@ -6,10 +6,10 @@ export const CSVReader = () => {
   const { CSVReader } = useCSVReader();
   const { setData, removeData, setAcceptedFileName, acceptedFileName } =
     useCalculatorStore();
-  const platoRegex = /\d\d,\d°|\d\d,\d\d°|\d,\d°/;
+  const platoRegex = /(\d\d,\d°|\d\d,\d\d°|\d,\d°)/g;
   const volumeRegex =
     /(0,5 l|0,75 l|0,44 l|0,33 l|0,375 l|0,750 l|30 l|20 l|10 l)/g;
-  const packageTypeRegex = /but\.|but|can|keg|keykeg/;
+  const packageTypeRegex = /(but\.|can|keg|keykeg)/g;
 
   return (
     <CSVReader
