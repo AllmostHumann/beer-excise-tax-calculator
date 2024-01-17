@@ -23,28 +23,28 @@ export const CalculatedResults = () => {
 
         switch (item.volume) {
           case '0,5 l':
-            case '0,5l':
+          case '0,5l':
             return sum + quantities / 200;
           case '0,33 l':
-            case '0,33l':
+          case '0,33l':
             return sum + quantities * 0.0033;
           case '0,44 l':
-            case '0,44l':
+          case '0,44l':
             return sum + quantities * 0.0044;
           case '0,375 l':
-            case '0,375l':
+          case '0,375l':
             return sum + quantities * 0.00375;
           case '0,75 l':
-            case '0,75l':
+          case '0,75l':
             return sum + quantities * 0.0075;
           case '10 l':
-            case '10l':
+          case '10l':
             return sum + quantities * 0.1;
           case '20 l':
-            case '20l':
+          case '20l':
             return sum + quantities * 0.2;
           case '30 l':
-            case '30l':
+          case '30l':
             return sum + quantities * 0.3;
           default:
             return sum + quantities;
@@ -68,7 +68,7 @@ export const CalculatedResults = () => {
   return (
     <div>
       <div className='mb-4 flex flex-row items-center justify-center font-bold'>
-        <WarningIcon className='h-6' />
+        <WarningIcon className='md:w6 w-12 pr-2' />
         <p>
           Tax for beer in 2024 - 10.40 zł per hectolitre for each degree Plato
           of the finished product.
@@ -89,26 +89,25 @@ export const CalculatedResults = () => {
           defaultChecked={discount === 2 ? true : false}
         />
       </div>
-    
-        <div className='md:mx-5 grid md:grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr] gap-1 grid-cols-[1fr_1fr]'>
-          {resultsForPlato.map((result) => (
-            <div
-              key={result.plato}
-              className='flex flex-col border-[2px]  border-solid px-1'
-            >
-              <div className='px-1 font-medium'>
-                Extract: <p className='font-bold'>{result.plato} Plato</p>
-              </div>
-              <div className='px-1 font-medium'>
-                Volume: <p className='font-bold'>{result.sumQuantities} hl</p>
-              </div>
-              <div className='px-1 font-medium'>
-                Tax: <p className='font-bold'>{result.taxToPay} zł</p>
-              </div>
+
+      <div className='grid grid-cols-[1fr_1fr] gap-1 md:mx-5 md:grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr]'>
+        {resultsForPlato.map((result) => (
+          <div
+            key={result.plato}
+            className='flex flex-col border-[2px]  border-solid px-1'
+          >
+            <div className='px-1 font-medium'>
+              Extract: <p className='font-bold'>{result.plato} Plato</p>
             </div>
-          ))}
-        </div>
-      
+            <div className='px-1 font-medium'>
+              Volume: <p className='font-bold'>{result.sumQuantities} hl</p>
+            </div>
+            <div className='px-1 font-medium'>
+              Tax: <p className='font-bold'>{result.taxToPay} zł</p>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
