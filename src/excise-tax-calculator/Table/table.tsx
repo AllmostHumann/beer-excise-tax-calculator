@@ -7,7 +7,7 @@ import {
   getFilteredRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import useCalculatorStore from '../../utils/calculatorStore';
 import { RowData } from '../../api/types/csvReaderTypes';
 import { Beer } from '../../api/types/dataTypes';
@@ -82,6 +82,14 @@ export const Table = () => {
       setHideTable(false);
     }
   };
+
+  useEffect(() => {
+    if (window.innerWidth < 1024) {
+      setHideTable(true);
+    } else if (window.innerWidth > 1024) {
+      setHideTable(false);
+    }
+  }, [setHideTable]);
 
   const table = useReactTable({
     data,
