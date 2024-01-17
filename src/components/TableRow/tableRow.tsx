@@ -19,7 +19,7 @@ export const TableRow = ({ table, row }: TableCellProps) => {
         onClick={addRow}
         className='px-1 py-1'
       >
-        <AddButton className='h-auto w-6' />
+        <AddButton className='h-auto w-6 translate-y-[1px]' />
       </button>
       <button
         onClick={removeRow}
