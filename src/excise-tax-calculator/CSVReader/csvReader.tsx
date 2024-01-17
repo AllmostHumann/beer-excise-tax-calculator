@@ -52,12 +52,12 @@ export const CSVReader = () => {
             <button
               type='button'
               {...getRootProps()}
-              className='mx-0 my-[5px] h-[65px] cursor-pointer bg-[#366992] px-[25px] py-[10px] font-medium leading-6 text-white outline-none hover:bg-[#4B91C9] md:h-[44px]'
+              className='mx-0 my-[5px] md:h-[65px] h-[40px] cursor-pointer bg-[#366992] md:px-[25px] px-[10px] py-[10px] font-medium leading-6 text-white outline-none hover:bg-[#4B91C9] md:h-[44px]'
             >
-              Browse file
+              {window.screen.width <= 390 ? 'Browse' : 'Browse File'}
             </button>
-            <div className='mx-0 my-[5px] h-[65px] w-[60%] bg-white px-[25px] pt-[3px] font-medium leading-10 text-black outline-none md:h-[44px]'>
-              {acceptedFile ? acceptedFile.name : acceptedFileName}
+            <div className='mx-0 my-[5px] md:h-[65px] h-[40px] w-[60%] bg-white md:px-[25px] px-[10px] py-[3px] font-medium leading-10 text-black outline-none md:h-[44px]'>
+              <p className='md:translate-y-2'>{acceptedFile ? acceptedFile.name : acceptedFileName}</p>
             </div>
             <button
               {...getRemoveFileProps()}
@@ -65,7 +65,7 @@ export const CSVReader = () => {
                 removeData();
                 getRemoveFileProps().onClick?.(event);
               }}
-              className='mx-0 my-[5px] h-[65px] cursor-pointer bg-[#A01919] px-[25px] py-[10px] font-medium leading-6 text-white outline-none hover:bg-[#DD2222] md:h-[44px]'
+              className='mx-0 my-[5px] md:h-[65px] h-[40px] cursor-pointer bg-[#A01919] md:px-[25px] px-[10px] py-[10px] font-medium leading-6 text-white outline-none hover:bg-[#DD2222] md:h-[44px]'
             >
               Remove
             </button>

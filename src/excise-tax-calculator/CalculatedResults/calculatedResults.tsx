@@ -81,8 +81,8 @@ export const CalculatedResults = () => {
           defaultChecked={discount === 2 ? true : false}
         />
       </div>
-      <div>
-        <div className='mx-5 grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr] gap-1'>
+    
+        <div className='md:mx-5 grid md:grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_1fr] gap-1 grid-cols-[1fr_1fr]'>
           {resultsForPlato.map((result) => (
             <div
               key={result.plato}
@@ -100,7 +100,7 @@ export const CalculatedResults = () => {
             </div>
           ))}
         </div>
-      </div>
+      
     </div>
   );
 };
