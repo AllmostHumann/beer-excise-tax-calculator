@@ -134,7 +134,7 @@ export const Table = () => {
       >
         <p className='pr-1 font-semibold'>Search:</p>
         <DebounceInput
-          className='my-2 rounded-md border-[1px] border-solid border-black bg-gray-200'
+          className='my-2 px-1 rounded-md border-[1px] border-solid border-black bg-gray-200'
           debounceTimeout={300}
           type='text'
           value={filtering}
