@@ -64,9 +64,24 @@ const defaultColumns = [
 ];
 
 export const Table = () => {
-  const { data, setData, acceptedFileName } = useCalculatorStore();
+  const {
+    data,
+    setData,
+    acceptedFileName,
+    filtering,
+    setFiltering,
+    hideTable,
+    setHideTable,
+  } = useCalculatorStore();
   const [columns] = useState<typeof defaultColumns>(() => [...defaultColumns]);
-  const [filtering, setFiltering] = useState('');
+
+  const toggleHideTable = () => {
+    if (hideTable === false) {
+      setHideTable(true);
+    } else if (hideTable === true) {
+      setHideTable(false);
+    }
+  };
 
   const table = useReactTable({
     data,
@@ -126,15 +141,24 @@ export const Table = () => {
   });
 
   return (
-    <div className='mx-5 my-2 overflow-x-auto'>
+    <div className='mx-1 my-1 overflow-x-auto md:mx-5 md:my-2'>
+      <button
+        className={`my-2 rounded-md border-[1px] border-solid border-black px-1 font-semibold ${
+          acceptedFileName ? 'block' : 'hidden'
+        }`}
+        type='button'
+        onClick={() => toggleHideTable()}
+      >
+        {hideTable === false ? 'Hide table' : 'Show table'}
+      </button>
       <div
         className={`flex flex-row items-center ${
           acceptedFileName ? 'block' : 'hidden'
-        }`}
+        } ${hideTable === false ? 'block' : 'hidden'}`}
       >
         <p className='pr-1 font-semibold'>Search:</p>
         <DebounceInput
-          className='my-2 px-1 rounded-md border-[1px] border-solid border-black bg-gray-200'
+          className='my-2 rounded-md border-[1px] border-solid border-black bg-gray-200 px-1'
           debounceTimeout={300}
           type='text'
           value={filtering}
@@ -143,7 +167,9 @@ export const Table = () => {
       </div>
       <table
         {...{
-          className: `border-collapse ${acceptedFileName ? 'table' : 'hidden'}`,
+          className: `border-collapse ${
+            acceptedFileName ? 'table' : 'hidden'
+          } ${hideTable === false ? 'table' : 'hidden'}`,
           style: {
             width: table.getCenterTotalSize(),
           },
