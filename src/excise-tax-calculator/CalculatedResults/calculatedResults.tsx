@@ -23,20 +23,28 @@ export const CalculatedResults = () => {
 
         switch (item.volume) {
           case '0,5 l':
+            case '0,5l':
             return sum + quantities / 200;
           case '0,33 l':
+            case '0,33l':
             return sum + quantities * 0.0033;
           case '0,44 l':
+            case '0,44l':
             return sum + quantities * 0.0044;
           case '0,375 l':
+            case '0,375l':
             return sum + quantities * 0.00375;
           case '0,75 l':
+            case '0,75l':
             return sum + quantities * 0.0075;
           case '10 l':
+            case '10l':
             return sum + quantities * 0.1;
           case '20 l':
+            case '20l':
             return sum + quantities * 0.2;
           case '30 l':
+            case '30l':
             return sum + quantities * 0.3;
           default:
             return sum + quantities;
