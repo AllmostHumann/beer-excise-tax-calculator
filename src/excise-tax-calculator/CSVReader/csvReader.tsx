@@ -9,7 +9,7 @@ export const CSVReader = () => {
   const platoRegex = /(\d\d,\d°|\d\d,\d\d°|\d,\d°)/g;
   const volumeRegex =
     /(0,5 l|0,75 l|0,44 l|0,33 l|0,375 l|0,750 l|30 l|20 l|10 l)/g;
-  const packageTypeRegex = /(but\.|can|keg|keykeg)/g;
+  const packageTypeRegex = /(but\.|can(?=\s)|keg|keykeg)/g;
 
   return (
     <CSVReader
