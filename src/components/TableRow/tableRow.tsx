@@ -17,15 +17,15 @@ export const TableRow = ({ table, row }: TableCellProps) => {
     <div className='flex flex-row justify-center'>
       <button
         onClick={addRow}
-        className='px-1'
+        className='px-1 py-1'
       >
-        <AddButton />
+        <AddButton className='h-auto w-6' />
       </button>
       <button
         onClick={removeRow}
         className='px-1'
       >
-        <DeleteButton />
+        <DeleteButton className='h-auto w-6' />
       </button>
     </div>
   );
