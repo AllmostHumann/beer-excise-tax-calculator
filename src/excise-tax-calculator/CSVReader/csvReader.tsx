@@ -1,11 +1,14 @@
 import { useCSVReader } from 'react-papaparse';
+import { BrowseFileButton } from '../../components/Buttons/ReaderButtons/browseFileButton';
+import { BrowseRemoveButton } from '../../components/Buttons/ReaderButtons/removeButton';
+import { FileField } from '../../components/FileField/filefield';
+import { CSVReaderWrapper } from '../../components/CSVReaderWrapper/csvReaderWrapper';
 import useCalculatorStore from '../../utils/calculatorStore';
-import { ParsedResults, ParserProps } from '../../api/types/csvReaderTypes';
+import { ParsedResults } from '../../api/types/csvReaderTypes';
 
 export const CSVReader = () => {
   const { CSVReader } = useCSVReader();
-  const { setData, removeData, setAcceptedFileName, acceptedFileName } =
-    useCalculatorStore();
+  const { setData, setAcceptedFileName } = useCalculatorStore();
   const platoRegex =
     /(\d\d,\d°|\d\d,\d\d°|\d,\d°|\d\d,\d⁰|\d\d,\d\d⁰|\d,\d⁰|\d\d,\dº|\d\d,\d\dº|\d,\dº)/g;
   const volumeRegex =
@@ -47,33 +50,12 @@ export const CSVReader = () => {
         skipEmptyLines: true,
       }}
     >
-      {({ getRootProps, acceptedFile, getRemoveFileProps }: ParserProps) => (
-        <>
-          <div className='mb-[10px] flex flex-row justify-center'>
-            <button
-              type='button'
-              {...getRootProps()}
-              className='mx-0 my-[5px] h-[40px] cursor-pointer rounded-md bg-[#366992] px-[10px] py-[10px] font-medium leading-6 text-white outline-none hover:bg-[#4B91C9] md:h-[45px] md:px-[25px]'
-            >
-              <p className='translate-y-[-1px] md:translate-y-0'>Browse</p>
-            </button>
-            <div className='bg-silver mx-2 my-[5px] h-[40px] w-[60%] rounded-md px-3 py-[3px] font-medium leading-10 text-black outline-none md:h-[45px] md:px-[25px]'>
-              <p className='translate-y-[-1px] md:translate-y-0'>
-                {acceptedFile ? acceptedFile.name : acceptedFileName}
-              </p>
-            </div>
-            <button
-              {...getRemoveFileProps()}
-              onClick={(event) => {
-                removeData();
-                getRemoveFileProps().onClick?.(event);
-              }}
-              className='mx-0 my-[5px] h-[40px] cursor-pointer rounded-md bg-[#A01919] px-[10px] py-[10px] font-medium leading-6 text-white outline-none hover:bg-[#DD2222] md:h-[45px] md:px-[25px]'
-            >
-              <p className='translate-y-[-1px] md:translate-y-0'>Remove</p>
-            </button>
-          </div>
-        </>
+      {() => (
+        <CSVReaderWrapper>
+          <BrowseFileButton />
+          <FileField />
+          <BrowseRemoveButton />
+        </CSVReaderWrapper>
       )}
     </CSVReader>
   );

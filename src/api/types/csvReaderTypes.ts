@@ -17,7 +17,7 @@ export interface ParsedResults {
 }
 
 export interface ParserProps {
-  getRootProps: () => HTMLAttributes<HTMLElement>;
-  acceptedFile: File;
-  getRemoveFileProps: () => HTMLAttributes<HTMLElement>;
+  getRootProps?: () => HTMLAttributes<HTMLElement>;
+  acceptedFile?: File;
+  getRemoveFileProps?: () => HTMLAttributes<HTMLElement>;
 }
