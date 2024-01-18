@@ -1,13 +1,17 @@
 import { Container } from './components/Container/container';
+import { Footer } from './components/Footer/footer';
 import { Header } from './components/Header/header';
 import { ExciseTaxCalculator } from './excise-tax-calculator/exciseTaxCalculator';
 
 function App() {
   return (
-    <Container>
+    <>
       <Header title='Beer excise tax calculator' />
-      <ExciseTaxCalculator />
-    </Container>
+      <Container>
+        <ExciseTaxCalculator />
+      </Container>
+      <Footer />
+    </>
   );
 }
 

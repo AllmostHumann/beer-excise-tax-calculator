@@ -1,7 +1,7 @@
 export const Header = ({ title }: { title: string }) => {
   return (
-    <header>
-      <h1 className='m-0 grid place-items-center py-[10px] text-[30px] font-bold md:text-[30px]'>
+    <header className='bg-sherpaBlue grid place-items-center'>
+      <h1 className='my-1 text-[15px] font-semibold text-white md:text-[20px]'>
         {title}
       </h1>
     </header>
