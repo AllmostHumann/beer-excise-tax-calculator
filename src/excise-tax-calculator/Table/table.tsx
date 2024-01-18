@@ -12,13 +12,22 @@ import useCalculatorStore from '../../utils/calculatorStore';
 import { RowData } from '../../api/types/csvReaderTypes';
 import { Beer } from '../../api/types/dataTypes';
 import { TableCell } from '../../components/TableCell/tableCell';
-import { TableRow } from '../../components/TableRow/tableRow';
+import { AddRowButton } from '../../components/Buttons/RowButtons/addRowButton';
+import { DeleteRowButton } from '../../components/Buttons/RowButtons/deleteRowButton';
 
 const columnHelper = createColumnHelper<RowData | Beer>();
 
 const defaultColumns = [
+  columnHelper.accessor('addRow', {
+    id: 'addRow',
+    size: 20,
+    header: '',
+    cell: AddRowButton,
+    footer: '',
+    enableResizing: false,
+  }),
   columnHelper.accessor('orderNumber', {
-    size: 50,
+    size: 40,
     header: () => <span className='pl-1'>No.</span>,
     cell: TableCell,
     footer: () => <span className='pl-1'>No.</span>,
@@ -53,11 +62,11 @@ const defaultColumns = [
     cell: TableCell,
     footer: () => <span className='pl-1'>Quantities</span>,
   }),
-  columnHelper.accessor('addRow', {
-    id: 'addRow',
-    size: 40,
+  columnHelper.accessor('deleteRow', {
+    id: 'deleteRow',
+    size: 20,
     header: '',
-    cell: TableRow,
+    cell: DeleteRowButton,
     footer: '',
     enableResizing: false,
   }),
@@ -151,7 +160,7 @@ export const Table = () => {
   return (
     <div className='mx-1 my-1 overflow-x-auto md:mx-5 md:my-2'>
       <button
-        className={`my-2 rounded-md border-[1px] border-solid border-black px-1 font-semibold ${
+        className={`my-2 rounded-md border-[1px] border-solid border-black bg-sherpaBlue px-1 font-medium text-white ${
           acceptedFileName ? 'block' : 'hidden'
         }`}
         type='button'
@@ -164,10 +173,10 @@ export const Table = () => {
           acceptedFileName ? 'block' : 'hidden'
         } ${hideTable === false ? 'block' : 'hidden'}`}
       >
-        <p className='pr-1 font-semibold'>Search:</p>
+        <p className='pl-[1px] pr-1 font-semibold text-alto'>Search:</p>
         <DebounceInput
           name='searchInput'
-          className='my-2 rounded-md border-[1px] border-solid border-black bg-gray-200 px-1'
+          className='my-2 rounded-md border-[1px] border-solid border-black bg-silverChalice px-1'
           debounceTimeout={300}
           type='text'
           value={filtering}
@@ -176,7 +185,7 @@ export const Table = () => {
       </div>
       <table
         {...{
-          className: `border-collapse ${
+          className: `border-collapse font-medium ${
             acceptedFileName ? 'table' : 'hidden'
           } ${hideTable === false ? 'table' : 'hidden'}`,
           style: {
@@ -190,10 +199,10 @@ export const Table = () => {
               {headerGroup.headers.map((header) => (
                 <th
                   {...{
-                    className: `relative  ${
-                      header.id === 'addRow'
-                        ? 'border-none'
-                        : 'border-[1px] border-solid border-black'
+                    className: `relative text-white font-medium ${
+                      header.id === 'addRow' || header.id === 'deleteRow'
+                        ? 'border-none bg-transparent'
+                        : 'border-[1px] border-solid border-black bg-sherpaBlue'
                     }`,
                     key: header.id,
                     colSpan: header.colSpan,
@@ -208,7 +217,8 @@ export const Table = () => {
                         header.column.columnDef.header,
                         header.getContext(),
                       )}
-                  {header.id === 'addRow' ? null : (
+                  {header.id === 'addRow' ||
+                  header.id === 'deleteRow' ? null : (
                     <Resizer
                       header={header}
                       table={table}
@@ -224,7 +234,7 @@ export const Table = () => {
             <tr key={row.id}>
               {row.getVisibleCells().map((cell) => (
                 <td
-                  className='border-[1px] border-solid border-black'
+                  className='border-[1px] border-solid border-black bg-silverChalice py-1'
                   key={cell.id}
                   style={{
                     width: `${cell.column.getSize()}px`,
@@ -242,10 +252,10 @@ export const Table = () => {
               {footerGroup.headers.map((header) => (
                 <th
                   {...{
-                    className: `relative  ${
-                      header.id === 'addRow'
-                        ? 'border-none'
-                        : 'border-[1px] border-solid border-black'
+                    className: `relative text-white font-medium ${
+                      header.id === 'addRow' || header.id === 'deleteRow'
+                        ? 'border-none bg-transparent'
+                        : 'border-[1px] border-solid border-black bg-sherpaBlue'
                     }`,
                     key: header.id,
                     colSpan: header.colSpan,

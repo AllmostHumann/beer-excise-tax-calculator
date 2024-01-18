@@ -1,6 +1,7 @@
 import { HTMLAttributes } from 'react';
 
 export interface RowData {
+  addRow?: string;
   [key: number]: string | undefined;
   orderNumber?: string | undefined;
   beerName?: string;
@@ -8,7 +9,7 @@ export interface RowData {
   volume?: string;
   packageType?: string;
   quantities?: string | undefined;
-  addRow?: string;
+  deleteRow?: string;
 }
 
 export interface ParsedResults {
