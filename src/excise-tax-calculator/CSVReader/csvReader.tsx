@@ -4,7 +4,7 @@ import { BrowseRemoveButton } from '../../components/Buttons/ReaderButtons/remov
 import { FileField } from '../../components/FileField/filefield';
 import { CSVReaderWrapper } from '../../components/CSVReaderWrapper/csvReaderWrapper';
 import useCalculatorStore from '../../utils/calculatorStore';
-import { ParsedResults } from '../../api/types/csvReaderTypes';
+import { ParsedResults, ParserProps } from '../../api/types/csvReaderTypes';
 
 export const CSVReader = () => {
   const { CSVReader } = useCSVReader();
@@ -50,11 +50,11 @@ export const CSVReader = () => {
         skipEmptyLines: true,
       }}
     >
-      {() => (
+      {({acceptedFile, getRemoveFileProps,getRootProps} :ParserProps ) => (
         <CSVReaderWrapper>
-          <BrowseFileButton />
-          <FileField />
-          <BrowseRemoveButton />
+          <BrowseFileButton getRootProps={getRootProps}/>
+          <FileField acceptedFile={acceptedFile}  />
+          <BrowseRemoveButton getRemoveFileProps={getRemoveFileProps}/>
         </CSVReaderWrapper>
       )}
     </CSVReader>
