@@ -50,11 +50,11 @@ export const CSVReader = () => {
         skipEmptyLines: true,
       }}
     >
-      {({acceptedFile, getRemoveFileProps,getRootProps} :ParserProps ) => (
+      {({ acceptedFile, getRemoveFileProps, getRootProps }: ParserProps) => (
         <CSVReaderWrapper>
-          <BrowseFileButton getRootProps={getRootProps}/>
-          <FileField acceptedFile={acceptedFile}  />
-          <BrowseRemoveButton getRemoveFileProps={getRemoveFileProps}/>
+          <BrowseFileButton getRootProps={getRootProps} />
+          <FileField acceptedFile={acceptedFile} />
+          <BrowseRemoveButton getRemoveFileProps={getRemoveFileProps} />
         </CSVReaderWrapper>
       )}
     </CSVReader>
