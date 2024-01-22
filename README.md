@@ -1,4 +1,4 @@
-# MERN Todo list with TypeScript
+# Beer excise tax calculator
 
 ![Excise Tax Calculator](./public/demo.gif)
 
