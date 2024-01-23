@@ -1,22 +1,22 @@
 import useCalculatorStore from '../../utils/calculatorStore';
 import { calculatedPlatoValues } from './unitResults';
-import { ResultField } from '../../components/Results/resultsField';
-import { ResultText } from '../../components/Results/resultsText';
-import { ResultsWrapper } from '../../components/Results/resultsWrapper';
-import { ResultsContainer } from '../../components/Results/resultsContainer';
-import { DiscountButton } from '../../components/Buttons/DiscountButton/discountButton';
-import { WarningText } from '../../components/WarningText/warningText';
-import { ResultsTitle } from '../../components/Results/resultsTitle';
+import { ResultField } from '../../components/Results/ResultsField';
+import { ResultText } from '../../components/Results/ResultsText';
+import { ResultsWrapper } from '../../components/Results/ResultsWrapper';
+import { ResultsContainer } from '../../components/Results/ResultsContainer';
+import { DiscountButtonn } from '../../components/Buttons/DiscountButton/DiscountButton';
+import { WarningTextt } from '../../components/WarningText/WarningText';
+import { ResultsTitle } from '../../components/Results/ResultsTitle';
 
-export const CalculatedResults = () => {
+export const CalculatedResultss = () => {
   const { data, discount } = useCalculatorStore();
 
   const resultsForPlato = calculatedPlatoValues(data, discount);
 
   return (
     <div>
-      <WarningText />
-      <DiscountButton />
+      <WarningTextt />
+      <DiscountButtonn />
       <ResultsContainer>
         {resultsForPlato.map((result) => (
           <ResultsWrapper key={result.plato}>

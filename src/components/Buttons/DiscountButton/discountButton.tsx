@@ -1,6 +1,6 @@
 import useCalculatorStore from '../../../utils/calculatorStore';
 
-export const DiscountButton = () => {
+export const DiscountButtonn = () => {
   const { acceptedFileName, discount, setDiscount } = useCalculatorStore();
   const useDiscountForSmallProducers = () => {
     setDiscount(discount === 1 ? 2 : 1);

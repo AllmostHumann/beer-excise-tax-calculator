@@ -1,11 +1,18 @@
-import { ParserProps } from '../../../api/types/csvReaderTypes';
+import { HTMLAttributes } from 'react';
 import useCalculatorStore from '../../../utils/calculatorStore';
 
-export const BrowseRemoveButton = ({ getRemoveFileProps }: ParserProps) => {
+interface RemoveButtonProps {
+  getRemoveFileProps?: () => HTMLAttributes<HTMLElement>;
+}
+
+export const RemoveButton: React.FC<RemoveButtonProps> = ({
+  getRemoveFileProps,
+}) => {
   const { removeData } = useCalculatorStore();
 
   return (
     <button
+      data-testid='removeButton'
       {...(getRemoveFileProps && getRemoveFileProps())}
       onClick={(event) => {
         removeData();

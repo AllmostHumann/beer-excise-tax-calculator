@@ -1,7 +1,10 @@
-import { ParserProps } from '../../api/types/csvReaderTypes';
 import useCalculatorStore from '../../utils/calculatorStore';
 
-export const FileField = ({ acceptedFile }: ParserProps) => {
+interface FileFieldProps {
+  acceptedFile?: File;
+}
+
+export const FileField: React.FC<FileFieldProps> = ({ acceptedFile }) => {
   const { acceptedFileName } = useCalculatorStore();
 
   return (

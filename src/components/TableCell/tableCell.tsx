@@ -1,13 +1,23 @@
+import { Cell, Column, Getter, Row, Table } from '@tanstack/react-table';
 import { useEffect, useState } from 'react';
-import { TableCellProps } from '../../api/types/tableCellTypes';
+import { RowData } from '../../api/types/csvReaderTypes';
+import { Beer } from '../../api/types/dataTypes';
 
-export const TableCell = ({
+interface TableCellProps {
+  getValue: Getter<string>;
+  row: Row<RowData | Beer>;
+  column: Column<RowData | Beer, unknown>;
+  table: Table<RowData | Beer>;
+  cell: Cell<RowData | Beer, unknown>;
+}
+
+export const TableCell: React.FC<TableCellProps> = ({
   getValue,
   row,
   column,
   table,
   cell,
-}: TableCellProps) => {
+}) => {
   const initialValue = getValue();
   const [value, setValue] = useState('');
 

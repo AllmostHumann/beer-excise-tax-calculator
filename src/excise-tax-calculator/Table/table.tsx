@@ -1,4 +1,4 @@
-import { Resizer } from '../../components/Resizer/resizer';
+import { Resizer } from '../../components/Resizer/Resizer';
 import { DebounceInput } from 'react-debounce-input';
 import {
   createColumnHelper,
@@ -11,9 +11,9 @@ import { useEffect, useState } from 'react';
 import useCalculatorStore from '../../utils/calculatorStore';
 import { RowData } from '../../api/types/csvReaderTypes';
 import { Beer } from '../../api/types/dataTypes';
-import { TableCell } from '../../components/TableCell/tableCell';
-import { AddRowButton } from '../../components/Buttons/RowButtons/addRowButton';
-import { DeleteRowButton } from '../../components/Buttons/RowButtons/deleteRowButton';
+import { TableCell } from '../../components/TableCell/TableCell';
+import { AddRowButton } from '../../components/Buttons/RowButtons/AddRowButton';
+import { DeleteRowButton } from '../../components/Buttons/RowButtons/DeleteRowButton';
 
 const columnHelper = createColumnHelper<RowData | Beer>();
 
@@ -72,7 +72,7 @@ const defaultColumns = [
   }),
 ];
 
-export const Table = () => {
+export const Tablee = () => {
   const {
     data,
     setData,

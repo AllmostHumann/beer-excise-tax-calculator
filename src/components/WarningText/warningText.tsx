@@ -1,6 +1,6 @@
 import WarningIcon from './icons/warning.svg?react';
 
-export const WarningText = () => {
+export const WarningTextt = () => {
   return (
     <div className='mb-4 flex flex-row items-center justify-center font-bold'>
       <WarningIcon className='md:w6 w-12 pr-2' />

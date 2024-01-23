@@ -4,7 +4,7 @@ interface ResultFieldProps {
   className?: string;
 }
 
-export const ResultField = ({ key, children }: ResultFieldProps) => {
+export const ResultField: React.FC<ResultFieldProps> = ({ key, children }) => {
   return (
     <div
       key={key}

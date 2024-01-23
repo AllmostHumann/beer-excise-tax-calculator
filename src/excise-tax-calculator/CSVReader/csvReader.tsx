@@ -1,12 +1,23 @@
 import { useCSVReader } from 'react-papaparse';
-import { BrowseFileButton } from '../../components/Buttons/ReaderButtons/browseFileButton';
-import { BrowseRemoveButton } from '../../components/Buttons/ReaderButtons/removeButton';
-import { FileField } from '../../components/FileField/filefield';
-import { CSVReaderWrapper } from '../../components/CSVReaderWrapper/csvReaderWrapper';
+import { BrowseFileButton } from '../../components/Buttons/ReaderButtons/BrowseFileButton';
+import { RemoveButton } from '../../components/Buttons/ReaderButtons/RemoveButton';
+import { FileField } from '../../components/FileField/Filefield';
+import { CSVReaderWrapper } from '../../components/CSVReaderWrapper/CsvReaderWrapper';
 import useCalculatorStore from '../../utils/calculatorStore';
-import { ParsedResults, ParserProps } from '../../api/types/csvReaderTypes';
+import { RowData } from '../../api/types/csvReaderTypes';
+import { HTMLAttributes } from 'react';
 
-export const CSVReader = () => {
+interface ParserProps {
+  getRootProps?: () => HTMLAttributes<HTMLElement>;
+  acceptedFile?: File;
+  getRemoveFileProps?: () => HTMLAttributes<HTMLElement>;
+}
+
+interface ParsedResults {
+  data: RowData[];
+}
+
+export const CSVReaderr = () => {
   const { CSVReader } = useCSVReader();
   const { setData, setAcceptedFileName } = useCalculatorStore();
   const platoRegex =
@@ -54,7 +65,7 @@ export const CSVReader = () => {
         <CSVReaderWrapper>
           <BrowseFileButton getRootProps={getRootProps} />
           <FileField acceptedFile={acceptedFile} />
-          <BrowseRemoveButton getRemoveFileProps={getRemoveFileProps} />
+          <RemoveButton getRemoveFileProps={getRemoveFileProps} />
         </CSVReaderWrapper>
       )}
     </CSVReader>

@@ -1,7 +1,17 @@
+import { RowData } from '../../../api/types/csvReaderTypes';
+import { Beer } from '../../../api/types/dataTypes';
 import DeleteButton from './icons/deleteButton.svg?react';
-import { TableCellProps } from '../../../api/types/tableCellTypes';
+import { Cell, Column, Getter, Row, Table } from '@tanstack/react-table';
 
-export const DeleteRowButton = ({ table, row }: TableCellProps) => {
+export interface TableCellProps {
+  getValue: Getter<string>;
+  row: Row<RowData | Beer>;
+  column: Column<RowData | Beer, unknown>;
+  table: Table<RowData | Beer>;
+  cell: Cell<RowData | Beer, unknown>;
+}
+
+export const DeleteRowButton: React.FC<TableCellProps> = ({ table, row }) => {
   const meta = table?.options.meta;
 
   const removeRow = () => {

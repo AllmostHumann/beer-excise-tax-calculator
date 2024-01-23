@@ -1,6 +1,6 @@
 export const Footer = () => {
   return (
-    <footer className='bg-sherpaBlue sticky mt-auto grid place-items-center'>
+    <footer className='sticky mt-auto grid place-items-center bg-sherpaBlue'>
       <h1 className='text-[15px] font-semibold text-white'>
         <button
           type='button'

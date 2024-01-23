@@ -1,7 +1,7 @@
-import { Container } from './components/Container/container';
-import { Footer } from './components/Footer/footer';
-import { Header } from './components/Header/header';
-import { ExciseTaxCalculator } from './excise-tax-calculator/exciseTaxCalculator';
+import { Container } from './components/Container/Container';
+import { Footer } from './components/Footer/Footer';
+import { Header } from './components/Header/Header';
+import { ExciseTaxCalculator } from './excise-tax-calculator/ExciseTaxCalculator';
 
 function App() {
   return (

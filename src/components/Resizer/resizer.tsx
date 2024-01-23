@@ -1,6 +1,13 @@
-import { ResizerProps } from '../../api/types/resizerTypes';
+import { Header, Table } from '@tanstack/react-table';
+import { RowData } from '../../api/types/csvReaderTypes';
+import { Beer } from '../../api/types/dataTypes';
 
-export const Resizer = ({ header, table }: ResizerProps) => {
+interface ResizerProps {
+  header: Header<RowData | Beer, unknown>;
+  table: Table<RowData | Beer>;
+}
+
+export const Resizer: React.FC<ResizerProps> = ({ header, table }) => {
   return (
     <div
       {...{
