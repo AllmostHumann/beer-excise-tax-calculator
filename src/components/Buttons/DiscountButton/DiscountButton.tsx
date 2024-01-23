@@ -16,6 +16,7 @@ export const DiscountButton = () => {
       </label>
       <input
         id='discount'
+        data-testid='discountInputTestButton'
         onClick={useDiscountForSmallProducers}
         className='size-4 translate-y-0.5 hover:fill-red-400 md:hover:scale-[1.15]'
         type='checkbox'
