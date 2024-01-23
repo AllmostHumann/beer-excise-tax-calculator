@@ -17,7 +17,7 @@ interface ParsedResults {
   data: RowData[];
 }
 
-export const CSVReaderr = () => {
+export const CSVReader = () => {
   const { CSVReader } = useCSVReader();
   const { setData, setAcceptedFileName } = useCalculatorStore();
   const platoRegex =

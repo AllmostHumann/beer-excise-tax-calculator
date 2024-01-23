@@ -1,14 +1,14 @@
 import { Container } from '../components/Container/Container';
-import { CSVReaderr } from './CSVReader/CsvReader';
-import { CalculatedResultss } from './CalculatedResults/CalculatedResults';
-import { Tablee } from './Table/Table';
+import { CSVReader } from './CSVReader/CsvReader';
+import { CalculatedResults } from './CalculatedResults/CalculatedResults';
+import { Table } from './Table/Table';
 
-export const ExciseTaxCalculatorr = () => {
+export const ExciseTaxCalculator = () => {
   return (
     <Container>
-      <CSVReaderr />
-      <CalculatedResultss />
-      <Tablee />
+      <CSVReader />
+      <CalculatedResults />
+      <Table />
     </Container>
   );
 };

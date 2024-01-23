@@ -72,7 +72,7 @@ const defaultColumns = [
   }),
 ];
 
-export const Tablee = () => {
+export const Table = () => {
   const {
     data,
     setData,

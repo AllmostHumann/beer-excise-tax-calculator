@@ -4,19 +4,19 @@ import { ResultField } from '../../components/Results/ResultsField';
 import { ResultText } from '../../components/Results/ResultsText';
 import { ResultsWrapper } from '../../components/Results/ResultsWrapper';
 import { ResultsContainer } from '../../components/Results/ResultsContainer';
-import { DiscountButtonn } from '../../components/Buttons/DiscountButton/DiscountButton';
-import { WarningTextt } from '../../components/WarningText/WarningText';
+import { DiscountButton } from '../../components/Buttons/DiscountButton/DiscountButton';
+import { WarningText } from '../../components/WarningText/WarningText';
 import { ResultsTitle } from '../../components/Results/ResultsTitle';
 
-export const CalculatedResultss = () => {
+export const CalculatedResults = () => {
   const { data, discount } = useCalculatorStore();
 
   const resultsForPlato = calculatedPlatoValues(data, discount);
 
   return (
     <div>
-      <WarningTextt />
-      <DiscountButtonn />
+      <WarningText />
+      <DiscountButton />
       <ResultsContainer>
         {resultsForPlato.map((result) => (
           <ResultsWrapper key={result.plato}>
