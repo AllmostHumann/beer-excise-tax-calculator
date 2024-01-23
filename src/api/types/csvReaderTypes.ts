@@ -1,5 +1,3 @@
-import { HTMLAttributes } from 'react';
-
 export interface RowData {
   addRow?: string;
   [key: number]: string | undefined;
@@ -14,10 +12,4 @@ export interface RowData {
 
 export interface ParsedResults {
   data: RowData[];
-}
-
-export interface ParserProps {
-  getRootProps?: () => HTMLAttributes<HTMLElement>;
-  acceptedFile?: File;
-  getRemoveFileProps?: () => HTMLAttributes<HTMLElement>;
 }
