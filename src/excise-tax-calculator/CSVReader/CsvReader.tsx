@@ -1,7 +1,7 @@
 import { useCSVReader } from 'react-papaparse';
 import { BrowseFileButton } from '../../components/Buttons/ReaderButtons/BrowseFileButton';
 import { RemoveButton } from '../../components/Buttons/ReaderButtons/RemoveButton';
-import { FileField } from '../../components/FileField/Filefield';
+import { FileField } from '../../components/FileField/FileField';
 import { CSVReaderWrapper } from '../../components/CSVReaderWrapper/CsvReaderWrapper';
 import useCalculatorStore from '../../utils/calculatorStore';
 import { RowData } from '../../api/types/csvReaderTypes';
